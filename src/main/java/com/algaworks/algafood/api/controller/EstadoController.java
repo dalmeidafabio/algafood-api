@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.algaworks.algafood.domain.exception.CidadeNaoEncontradaException;
+import com.algaworks.algafood.domain.exception.NegocioException;
 import com.algaworks.algafood.domain.model.Estado;
 import com.algaworks.algafood.domain.repository.EstadoRepository;
 import com.algaworks.algafood.domain.service.CadastroEstadoService;
@@ -51,7 +53,12 @@ public class EstadoController {
 		
 		BeanUtils.copyProperties(estado, estadoAtual, "id");
 		
-		return cadastroEstado.salvar(estadoAtual);
+		try {
+			return cadastroEstado.salvar(estadoAtual);
+		} catch (CidadeNaoEncontradaException e) {
+			throw new NegocioException(e.getMessage());
+		}
+		
 	}
 	
 	@DeleteMapping("{estadoId}")
