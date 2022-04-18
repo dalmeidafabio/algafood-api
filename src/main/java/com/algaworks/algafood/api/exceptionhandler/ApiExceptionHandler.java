@@ -1,5 +1,6 @@
 package com.algaworks.algafood.api.exceptionhandler;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +26,11 @@ import com.fasterxml.jackson.databind.exc.PropertyBindingException;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
+	
+	public static final String MSG_ERRO_GENERICA_USUARIO_FINAL = 
+			"Ocorreu um erro interno inesperado no sistema. "
+		            + "Tente novamente e se o problema persistir, entre em contato "
+		            + "com o administrador do sistema.";
 
 	@Override
 	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
@@ -43,6 +49,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		String detail = "O corpo da requisição está inválido. Verifique o erro de sintaxe.";
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
+				.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
 				.build();
 		
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
@@ -69,6 +76,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	            ex.getRequestURL());		
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
+				.userMessage(detail)
 				.build();
 		
 		return handleExceptionInternal(ex, problem, headers, status, request);		
@@ -85,6 +93,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 				ex.getName(), ex.getValue(), ex.getRequiredType().getSimpleName());		
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
+			.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
 			.build();
 		
 	    return handleExceptionInternal(ex, problem, headers, status, request);
@@ -101,6 +110,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 				+ "Corrija ou remova essa propriedade e tente novamente.", path);		
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
+				.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
 				.build();
 		
 		return handleExceptionInternal(ex, problem, headers, status, request);		
@@ -118,6 +128,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 				path, ex.getValue(), ex.getTargetType().getSimpleName());
 
 		Problem problem = createProblemBuilder(status, problemType, detail)
+				.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
 				.build();
 		
 		return handleExceptionInternal(ex, problem, headers, status, request);
@@ -132,6 +143,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		String detail = ex.getMessage();
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
+				.userMessage(detail)
 				.build();
 		
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
@@ -146,6 +158,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		String detail = ex.getMessage();
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
+				.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
 				.build();
 		
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);		
@@ -160,6 +173,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		String detail = ex.getMessage();
 		
 		Problem problem = createProblemBuilder(status, problemType, detail)
+				.userMessage(detail)
 				.build();		
 		
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
@@ -170,10 +184,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		ProblemType problemType = ProblemType.ERRO_DE_SISTEMA;
-		
-	    String detail = "Ocorreu um erro interno inesperado no sistema. "
-	            + "Tente novamente e se o problema persistir, entre em contato "
-	            + "com o administrador do sistema.";		
+	    String detail = MSG_ERRO_GENERICA_USUARIO_FINAL;		
 		
 	    // Importante colocar o printStackTrace (pelo menos por enquanto, que não estamos
 	    // fazendo logging) para mostrar a stacktrace no console
@@ -182,6 +193,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	    ex.printStackTrace();
 	    
 		Problem problem = createProblemBuilder(status, problemType, detail)
+				.userMessage(detail)
 				.build();
 		
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);		
@@ -193,13 +205,17 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		if(body == null) {
 			body = Problem.builder()
+					.timestamp(LocalDateTime.now())
 					.title(status.getReasonPhrase())
 					.status(status.value())
+		            .userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
 					.build();
 		} else if (body instanceof String) {
 			body = Problem.builder()
+					.timestamp(LocalDateTime.now())
 					.title((String) body)
 					.status(status.value())
+					.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
 					.build();
 		}
 		
@@ -211,9 +227,11 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		
 		return Problem
 				.builder()
+				.timestamp(LocalDateTime.now())
 				.status(status.value())
 				.type(problemType.getUri())
 				.title(problemType.getTitle())
+				.userMessage(MSG_ERRO_GENERICA_USUARIO_FINAL)
 				.detail(detail);
 	}
 	
