@@ -90,6 +90,12 @@ public class RestauranteController {
 		
 		return atualizar(restauranteId, restauranteAtual);
 	}
+	
+	@DeleteMapping("{restauranteId}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void remover(@PathVariable Long restauranteId) {
+		cadastroRestaurante.excluir(restauranteId);
+	}	
 
 	private void merge(Map<String, Object> dadosOrigem, Restaurante restauranteDestino, HttpServletRequest request) {
 		
@@ -114,12 +120,5 @@ public class RestauranteController {
 			Throwable rootCause = ExceptionUtils.getRootCause(e);
 			throw new HttpMessageNotReadableException(e.getMessage(), rootCause, serverHttpRequest);
 		}
-	}
-	
-	@DeleteMapping("{restauranteId}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void remover(@PathVariable Long restauranteId) {
-		cadastroRestaurante.excluir(restauranteId);
 	}	
-	
 }
