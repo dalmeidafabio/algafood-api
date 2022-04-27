@@ -75,7 +75,6 @@ public class RestauranteController {
 			@RequestBody @Valid Restaurante restaurante) {
 
 		try {
-			
 				Restaurante restauranteAtual = cadastroRestaurante.buscarOuFalhar(restauranteId);
 			
 				BeanUtils.copyProperties(restaurante, restauranteAtual, "id", "formasPagamento", "endereco", "dataCadastro", "produtos");
