@@ -116,5 +116,4 @@ public class CidadeController {
 			throw new HttpMessageNotReadableException(e.getMessage(), rootCause, serverHttpRequest);
 		}
 	}
-
 }

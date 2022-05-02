@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.groups.ConvertGroup;
 import javax.validation.groups.Default;
 
@@ -19,7 +20,7 @@ import lombok.EqualsAndHashCode;
 
 @Entity
 @Data
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Cidade {
 
 	@Id
@@ -33,6 +34,7 @@ public class Cidade {
 	
 	@Valid
 	@ConvertGroup(from = Default.class, to = Groups.EstadoId.class)
+	@NotNull
 	@JoinColumn(nullable = false)
 	@ManyToOne
 	private Estado estado;
