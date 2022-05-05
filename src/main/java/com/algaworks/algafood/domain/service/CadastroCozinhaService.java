@@ -24,17 +24,16 @@ public class CadastroCozinhaService {
 		return cozinhaRepository.save(cozinha);
 	}
 	
-	//@Transactional
+	@Transactional
 	public void excluir(Long cozinhaId) {
 		try {
 			cozinhaRepository.deleteById(cozinhaId);
+			cozinhaRepository.flush();
 		} catch (EmptyResultDataAccessException  e) {
 			throw new CozinhaNaoEncontradaException(cozinhaId);
 		} catch (DataIntegrityViolationException e) {
 			throw new EntidadeEmUsoException(
 					String.format(MSG_COZINHA_EM_USO, cozinhaId));
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
 		}
 	}
 	
