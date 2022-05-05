@@ -22,7 +22,7 @@ public class RestauranteModelAssembler {
 	
 	public List<RestauranteModel> toCollectionModel(List<Restaurante> restaurantes){
 		return restaurantes.stream()
-				.map(restaurante -> toModel(restaurante))
+				.map(restaurante-> toModel(restaurante))
 				.collect(Collectors.toList());
 	}
 }
