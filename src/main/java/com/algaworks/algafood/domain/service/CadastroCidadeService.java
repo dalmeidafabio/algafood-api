@@ -20,7 +20,8 @@ public class CadastroCidadeService {
 	@Autowired
 	private CidadeRepository cidadeRepository;
 	
-	@Autowired CadastroEstadoService cadastroEstado;
+	@Autowired
+	private CadastroEstadoService cadastroEstado;
 	
 	@Transactional
 	public Cidade salvar(Cidade cidade) {

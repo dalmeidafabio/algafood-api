@@ -39,6 +39,6 @@ public class CadastroEstadoService {
 	
 	public Estado buscarOuFalhar(Long estadoId) {
 		return estadoRepository.findById(estadoId)
-				.orElseThrow(() -> new EstadoNaoEncontradoException (estadoId));
+				.orElseThrow(() -> new EstadoNaoEncontradoException(estadoId));
 	}	
 }
