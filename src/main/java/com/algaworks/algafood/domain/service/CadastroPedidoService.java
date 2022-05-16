@@ -14,14 +14,15 @@ public class CadastroPedidoService {
 	@Autowired
 	private PedidoRepository pedidoRepository;
 	
+	
 	@Transactional
 	public Pedido salvar(Pedido pedido) {
 		return pedidoRepository.save(pedido);
 	}
 	
-	public Pedido buscarOuFalhar(Long pedidoId) {
-		return pedidoRepository.findById(pedidoId)
-				.orElseThrow(() -> new PedidoNaoEncontradoException(pedidoId));
+	public Pedido buscarOuFalhar(String codigoPedido) {
+		return pedidoRepository.findByCodigo(codigoPedido)
+				.orElseThrow(() -> new PedidoNaoEncontradoException(codigoPedido));
 	}
 	
 }
