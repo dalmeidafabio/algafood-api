@@ -5,6 +5,7 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -32,9 +33,9 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-    private BigDecimal subtotal;
-    private BigDecimal taxaFrete;
-    private BigDecimal valorTotal;
+    private BigDecimal subtotal = BigDecimal.ZERO;
+    private BigDecimal taxaFrete = BigDecimal.ZERO;
+    private BigDecimal valorTotal = BigDecimal.ZERO;
     
     @Embedded
     private Endereco enderecoEntrega;
@@ -61,22 +62,16 @@ public class Pedido {
     @JoinColumn(nullable = false)
     private FormaPagamento formaPagamento;
     
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<ItemPedido> itens = new ArrayList<>();
     
     public void calcularValorTotal() {
+        getItens().forEach(ItemPedido::calcularPrecoTotal);
+
     	this.subtotal = getItens().stream()
     			.map(item -> item.getPrecoTotal())
     			.reduce(BigDecimal.ZERO, BigDecimal::add);
     	
     	this.valorTotal = this.subtotal.add(this.taxaFrete);
-    }
-    
-    public void definirFrete() {
-    	setTaxaFrete(getRestaurante().getTaxaFrete());
-    }
-    
-    public void atribuirPedidoAosItens() {
-    	getItens().forEach(item -> item.setPedido(this));
     }
 }

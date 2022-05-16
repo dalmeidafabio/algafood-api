@@ -22,9 +22,9 @@ public class ItemPedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private BigDecimal precoUnitario;
-	private BigDecimal precoTotal;
-	private Integer quantidade;
+	private BigDecimal precoUnitario = BigDecimal.ZERO;
+	private BigDecimal precoTotal = BigDecimal.ZERO;
+	private Integer quantidade = 0;
 	private String observacao;
 	
 	@ManyToOne
@@ -33,5 +33,20 @@ public class ItemPedido {
 
 	@ManyToOne
 	@JoinColumn(nullable = false)
-	private Produto produto; 
+	private Produto produto;
+	
+	public void calcularPrecoTotal() {
+	    BigDecimal precoUnitario = this.getPrecoUnitario();
+	    Integer quantidade = this.getQuantidade();
+
+	    if (precoUnitario == null) {
+	        precoUnitario = BigDecimal.ZERO;
+	    }
+
+	    if (quantidade == null) {
+	        quantidade = 0;
+	    }
+
+	    this.setPrecoTotal(precoUnitario.multiply(new BigDecimal(quantidade)));
+	}	
 }

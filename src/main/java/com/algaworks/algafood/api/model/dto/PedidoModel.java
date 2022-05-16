@@ -12,6 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PedidoModel {
+	
 	private Long id;
     private BigDecimal subtotal;
     private BigDecimal taxaFrete;
@@ -26,4 +27,5 @@ public class PedidoModel {
     private FormaPagamentoModel formaPagamento;
     private EnderecoModel enderecoEntrega;
     private List<ItemPedidoModel> itens;
+    
 }
