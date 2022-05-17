@@ -14,15 +14,15 @@ public class SquigglyConfig {
 
 	// ESSA BIBLIOTECA NÃO TEM ATUALIZAÇÃO DESDE 2019. NÃO FUNCIONOU NO MEU PROJETO!
 	
-	@Bean
-	public FilterRegistrationBean<SquigglyRequestFilter> squigglyRequestFilter(ObjectMapper objectMapper){
-		Squiggly.init(objectMapper, new RequestSquigglyContextProvider());
-		
-		var filterRegistrarion = new FilterRegistrationBean<SquigglyRequestFilter>();
-		
-		filterRegistrarion.setFilter(new SquigglyRequestFilter());
-		filterRegistrarion.setOrder(1);
-		
-		return filterRegistrarion;
-	}
+//	@Bean
+//	public FilterRegistrationBean<SquigglyRequestFilter> squigglyRequestFilter(ObjectMapper objectMapper){
+//		Squiggly.init(objectMapper, new RequestSquigglyContextProvider());
+//		
+//		var filterRegistrarion = new FilterRegistrationBean<SquigglyRequestFilter>();
+//		
+//		filterRegistrarion.setFilter(new SquigglyRequestFilter());
+//		filterRegistrarion.setOrder(1);
+//		
+//		return filterRegistrarion;
+//	}
 }
