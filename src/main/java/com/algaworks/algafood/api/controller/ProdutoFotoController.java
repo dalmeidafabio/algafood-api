@@ -51,22 +51,4 @@ public class ProdutoFotoController {
 		return fotoProdutoModelAssembler.toModel(fotoSalva);
 	}
 	
-//	@PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-//	public void atualizarFoto(@PathVariable Long restauranteId, @PathVariable Long produtoId, 
-//			@Valid FotoProdutoInput fotoProdutoInput) {
-//		
-//		var nomeArquivo = UUID.randomUUID().toString() + "_" + fotoProdutoInput.getArquivo().getOriginalFilename();
-//		
-//		var arquivoFoto = Path.of("D:/DEV/Java/ESR-AlgaWorks/CatalogoFotosProdutos", nomeArquivo);
-//		
-//		System.out.println(fotoProdutoInput.getDescricao());
-//		System.out.println(arquivoFoto);
-//		System.out.println(fotoProdutoInput.getArquivo().getContentType());
-//		
-//		try {
-//			fotoProdutoInput.getArquivo().transferTo(arquivoFoto);
-//		} catch (Exception e) {
-//			throw new RuntimeException(e);
-//		}
-//	}
 }
