@@ -8,5 +8,10 @@
     "name": "notificador.email.porta-servidor",
     "type": "java.lang.String",
     "description": "A description for 'notificador.email.porta-servidor'"
+  },
+  {
+    "name": "algafood.email.impl",
+    "type": "java.lang.String",
+    "description": "A description for 'algafood.email.impl'"
   }
 ]}
