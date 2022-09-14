@@ -55,7 +55,7 @@ public class Restaurante {
 	
 	private Boolean ativo = Boolean.TRUE;
 	
-	private Boolean aberto;
+	private Boolean aberto = Boolean.TRUE;
 	
 	@CreationTimestamp
 	@Column(nullable = false, columnDefinition = "datetime")
