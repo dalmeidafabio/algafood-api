@@ -59,7 +59,11 @@ public class FormaPagamentoController {
 		FormaPagamentoModel formaPagamentoModel = formaPagamentoModelAssembler.toModel(formaPagamento);
 		
 		return ResponseEntity.ok()
-				.cacheControl(CacheControl.maxAge(10, TimeUnit.SECONDS))
+				.eTag("asd3a1sd")
+				.cacheControl(CacheControl.maxAge(10, TimeUnit.SECONDS).cachePrivate()) //Apenas cache privado
+				//.cacheControl(CacheControl.maxAge(10, TimeUnit.SECONDS).cachePublic()) //Qualquer cache
+				//.cacheControl(CacheControl.noStore()) //Nenhum cache pode armazenar
+				//.cacheControl(CacheControl.noCache()) //Smpre deve validar a resposta.
 				.body(formaPagamentoModel);		
 	}
 	
