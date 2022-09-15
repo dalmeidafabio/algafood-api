@@ -1,6 +1,10 @@
 package com.algaworks.algafood.core.web;
 
+import javax.servlet.Filter;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.filter.ShallowEtagHeaderFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -16,5 +20,10 @@ public class WebConfig implements WebMvcConfigurer {
 //			.allowedOrigins("http://...") //Para espeficar o endereço
 //			.allowedMethods("*") //Para especificar os métodos
 //			.maxAge(30); // Para definir o tempo do cache
+	}
+	
+	@Bean
+	public Filter shallowEtagHeaderFilter() {
+		return new ShallowEtagHeaderFilter();
 	}
 }
