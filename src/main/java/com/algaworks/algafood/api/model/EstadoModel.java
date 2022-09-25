@@ -11,6 +11,6 @@ public class EstadoModel {
 	@ApiModelProperty(example = "1")
 	private Long id;
 	
-	@ApiModelProperty(example = "Bahia")
+	@ApiModelProperty(example = "Bahia", required = true)
 	private String nome;
 }

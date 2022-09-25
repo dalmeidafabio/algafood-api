@@ -113,7 +113,12 @@
 		    <groupId>io.springfox</groupId>
 		    <artifactId>springfox-boot-starter</artifactId>
 		    <version>${springfox.version}</version>
-		</dependency>		
+		</dependency>	
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-bean-validators</artifactId>
+		    <version>${springfox.version}</version>
+		</dependency>				
 	</dependencies>
 
 	<build>
