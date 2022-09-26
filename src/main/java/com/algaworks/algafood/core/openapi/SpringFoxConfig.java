@@ -42,7 +42,7 @@ public class SpringFoxConfig {
 	public Docket apiDocket() {
 	  
 	  var typeResolver = new TypeResolver();
-	  
+	  	
 	  return new Docket(DocumentationType.OAS_30)
 		.select()
 			.apis(RequestHandlerSelectors.basePackage("com.algaworks.algafood.api"))
@@ -55,7 +55,8 @@ public class SpringFoxConfig {
 			.globalResponses(HttpMethod.DELETE, globalDeleteResponseMessages())
 			.additionalModels(typeResolver.resolve(Problem.class))
 			.apiInfo(apiInfo())
-			.tags(new Tag("Cidades", "Gerencia as cidades."));
+			.tags(new Tag("Cidades", "Gerencia as cidades."),
+					new Tag("Grupos", "Gerencia os grupos de usuários"));
 	}
   
 	public ApiInfo apiInfo() {
