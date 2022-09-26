@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.algaworks.algafood.api.assembler.CidadeInputDisassembler;
 import com.algaworks.algafood.api.assembler.CidadeModelAssembler;
+import com.algaworks.algafood.api.exceptionhandler.Problem;
 import com.algaworks.algafood.api.model.CidadeModel;
 import com.algaworks.algafood.api.model.input.CidadeInput;
 import com.algaworks.algafood.domain.exception.EstadoNaoEncontradoException;
@@ -29,6 +30,10 @@ import com.algaworks.algafood.domain.service.CadastroCidadeService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @Api(tags = "Cidades")
 @RestController
@@ -53,6 +58,17 @@ public class CidadeController {
 		return cidadeRepository.findAll();
 	}
 	
+	
+	@ApiResponses({
+		@ApiResponse(responseCode = "404", 
+					description = "Cidade não encontrada", 
+					content = @Content(mediaType = "application/json",  
+									schema = @Schema(implementation = Problem.class))),
+		@ApiResponse(responseCode = "400", 
+					description = "ID da cidade é inválido", 
+					content = @Content(mediaType = "application/json",  
+									schema = @Schema(implementation = Problem.class)))
+	})	
 	@ApiOperation("Busca uma cidade por ID.")
 	@GetMapping("{cidadeId}")
 	public CidadeModel buscar(
@@ -61,6 +77,16 @@ public class CidadeController {
 		return cidadeModelAssembler.toModel(cadastroCidade.buscarOuFalhar(cidadeId));
 	}
 	
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", 
+					description = "Cidade criada", 
+					content = @Content(mediaType = "application/json",  
+									schema = @Schema(implementation = Problem.class))),
+		@ApiResponse(responseCode = "404", 
+					description = "Cidade não encontrada", 
+					content = @Content(mediaType = "application/json",  
+									schema = @Schema(implementation = Problem.class)))
+	})		
 	@ApiOperation("Cadastra uma cidade.")
 	@PostMapping
 	public CidadeModel adicionar(
@@ -77,6 +103,16 @@ public class CidadeController {
 		}		
 	}	
 	
+	@ApiResponses({
+		@ApiResponse(responseCode = "200", 
+					description = "Cidade atualizada", 
+					content = @Content(mediaType = "application/json",  
+									schema = @Schema(implementation = Problem.class))),
+		@ApiResponse(responseCode = "404", 
+					description = "Cidade não encontrada", 
+					content = @Content(mediaType = "application/json",  
+									schema = @Schema(implementation = Problem.class)))
+	})		
 	@ApiOperation("Atualiza uma cidade por ID.")
 	@PutMapping("{cidadeId}")
 	public CidadeModel atualizar(
@@ -97,6 +133,16 @@ public class CidadeController {
 		}
 	}
 	
+	@ApiResponses({
+		@ApiResponse(responseCode = "204", 
+					description = "Cidade excluída", 
+					content = @Content(mediaType = "application/json",  
+									schema = @Schema(implementation = Problem.class))),
+		@ApiResponse(responseCode = "404", 
+					description = "Cidade não encontrada", 
+					content = @Content(mediaType = "application/json",  
+									schema = @Schema(implementation = Problem.class)))
+	})		
 	@ApiOperation("Exclui uma cidade por ID.")
 	@DeleteMapping("{cidadeId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
