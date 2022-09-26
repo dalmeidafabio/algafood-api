@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,18 +47,18 @@ public class CidadeController implements CidadeControllerOpenApi {
 	private CidadeModelAssembler cidadeModelAssembler;
 
 	@ApiOperation("Lista as cidades.")
-	@GetMapping
+	@GetMapping(MediaType.APPLICATION_JSON_VALUE)
 	public List<Cidade> listar() {
 		return cidadeRepository.findAll();
 	}
 	
 	
-	@GetMapping("{cidadeId}")
+	@GetMapping(path = "{cidadeId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public CidadeModel buscar(@PathVariable Long cidadeId) {
 		return cidadeModelAssembler.toModel(cadastroCidade.buscarOuFalhar(cidadeId));
 	}
 	
-	@PostMapping
+	@PostMapping(MediaType.APPLICATION_JSON_VALUE)
 	public CidadeModel adicionar(@RequestBody @Valid CidadeInput cidadeInput) {
 		try {
 			Cidade cidade = cidadeInputDisassembler.toDomainObject(cidadeInput);
@@ -70,7 +71,7 @@ public class CidadeController implements CidadeControllerOpenApi {
 		}		
 	}	
 	
-	@PutMapping("{cidadeId}")
+	@PutMapping(path = "{cidadeId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public CidadeModel atualizar(Long cidadeId, @RequestBody @Valid CidadeInput cidadeInput) {		
 		try {
 			Cidade cidadeAtual = cadastroCidade.buscarOuFalhar(cidadeId);
