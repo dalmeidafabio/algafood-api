@@ -31,16 +31,16 @@ public interface CozinhaControllerOpenApi {
 				schema = @Schema(implementation = Problem.class)))
     })
     public CozinhaModel buscar(
-            @ApiParam(value = "ID de uma cozinha", example = "1")
-            Long cozinhaId);
+    		@ApiParam(value = "ID de uma cozinha", example = "1", required = true)
+    		Long cozinhaId);
     
     @ApiOperation("Cadastra uma cozinha")
     @ApiResponses({
         @ApiResponse(responseCode = "201", description = "Cozinha cadastrada"),
     })
     public CozinhaModel adicionar(
-            @ApiParam(name = "corpo", value = "Representação de uma nova cozinha")
-            CozinhaInput cozinhaInput);
+    		@ApiParam(name = "corpo", value = "Representação de uma nova cozinha", required = true)
+    		CozinhaInput cozinhaInput);
     
     @ApiOperation("Atualiza uma cozinha por ID")
     @ApiResponses({
@@ -50,11 +50,11 @@ public interface CozinhaControllerOpenApi {
 		schema = @Schema(implementation = Problem.class)))
     })
     public CozinhaModel atualizar(
-            @ApiParam(value = "ID de uma cozinha", example = "1")
-            Long cozinhaId,
-            
-            @ApiParam(name = "corpo", value = "Representação de uma cozinha com os novos dados")
-            CozinhaInput cozinhaInput);
+    		@ApiParam(value = "ID de uma cozinha", example = "1", required = true)
+    		Long cozinhaId,
+    		
+    		@ApiParam(name = "corpo", value = "Representação de uma cozinha com os novos dados")
+    		CozinhaInput cozinhaInput);
     
     @ApiOperation("Exclui uma cozinha por ID")
     @ApiResponses({
@@ -64,6 +64,6 @@ public interface CozinhaControllerOpenApi {
 		schema = @Schema(implementation = Problem.class)))
     })
     public void remover(
-            @ApiParam(value = "ID de uma cozinha", example = "1")
+            @ApiParam(value = "ID de uma cozinha", example = "1", required = true)
             Long cozinhaId);   
 }        
