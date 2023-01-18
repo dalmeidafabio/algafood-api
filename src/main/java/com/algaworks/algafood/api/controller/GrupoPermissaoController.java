@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.algaworks.algafood.api.assembler.PermissaoModelAssembler;
 import com.algaworks.algafood.api.model.PermissaoModel;
+import com.algaworks.algafood.api.openapi.controller.GrupoPermissaoControllerOpenApi;
 import com.algaworks.algafood.domain.model.Grupo;
 import com.algaworks.algafood.domain.service.CadastroGrupoService;
 
 @RestController
 @RequestMapping(path = "/grupos/{grupoId}/permissoes", produces = MediaType.APPLICATION_JSON_VALUE)
-public class GrupoPermissaoController {
+public class GrupoPermissaoController implements GrupoPermissaoControllerOpenApi {
 
 	@Autowired 
 	private CadastroGrupoService cadastroGrupo;
@@ -36,13 +37,13 @@ public class GrupoPermissaoController {
 	
 	@DeleteMapping("/{permissaoId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void desassociarPermissao(@PathVariable Long grupoId, @PathVariable Long permissaoId) {
+	public void desassociar(@PathVariable Long grupoId, @PathVariable Long permissaoId) {
 		cadastroGrupo.desassociarPermissao(grupoId, permissaoId);
 	}
 	
 	@PutMapping("/{permissaoId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void associarPermissao(@PathVariable Long grupoId, @PathVariable Long permissaoId) {
+	public void associar(@PathVariable Long grupoId, @PathVariable Long permissaoId) {
 		cadastroGrupo.associarPermissao(grupoId, permissaoId);
 	}
 	
