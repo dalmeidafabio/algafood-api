@@ -17,7 +17,7 @@ import com.algaworks.algafood.domain.service.VendaReportService;
 import com.algaworks.algafood.domain.service.VendasQueryService;
 
 @RestController
-@RequestMapping(path = "/estatisticas")
+@RequestMapping(path = "/estatisticas", produces = MediaType.APPLICATION_JSON_VALUE)
 public class EstatisticasController {
 
 	@Autowired
