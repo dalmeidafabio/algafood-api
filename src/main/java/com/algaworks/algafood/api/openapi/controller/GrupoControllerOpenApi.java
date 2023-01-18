@@ -26,7 +26,7 @@ public interface GrupoControllerOpenApi {
 									schema = @Schema(implementation = Problem.class)))
 	})		
 	@ApiOperation("Busca um grupo por ID.")
-	public GrupoModel buscar(
+	GrupoModel buscar(
 			@ApiParam(value = "ID de um grupo", example = "1", required = true)
 			Long grupoId);
 	
@@ -41,7 +41,7 @@ public interface GrupoControllerOpenApi {
 									schema = @Schema(implementation = Problem.class)))
 	})
 	@ApiOperation("Cadastra um Grupo.")	
-	public GrupoModel adicionar(
+	GrupoModel adicionar(
 			@ApiParam(name = "corpo", value = "Representação de um novo grupo", required = true)
 			GrupoInput grupoInput);
 	
@@ -56,7 +56,7 @@ public interface GrupoControllerOpenApi {
 									schema = @Schema(implementation = Problem.class)))
 	})
 	@ApiOperation("Cadastra um Grupo.")	
-	public GrupoModel atualizar(
+	GrupoModel atualizar(
 			@ApiParam(value = "ID de um grupo", example = "1", required = true)
 			Long grupoId,
 			
@@ -75,7 +75,7 @@ public interface GrupoControllerOpenApi {
 									schema = @Schema(implementation = Problem.class)))
 	})		
 	@ApiOperation("Exclui um grupo por ID.")	
-	public void remover(
+	void remover(
 			@ApiParam(value = "ID de um grupo", example = "1", required = true)
 			Long grupoId);
 
