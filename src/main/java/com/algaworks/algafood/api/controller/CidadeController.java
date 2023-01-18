@@ -39,7 +39,7 @@ public class CidadeController implements CidadeControllerOpenApi {
 	
 	@Autowired
 	private CadastroCidadeService cadastroCidade;
-	
+		
 	@Autowired
 	private CidadeInputDisassembler cidadeInputDisassembler;
 	
