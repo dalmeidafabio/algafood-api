@@ -12,7 +12,7 @@ import com.github.bohnman.squiggly.web.SquigglyRequestFilter;
 @Configuration
 public class SquigglyConfig {
 
-	// ESSA BIBLIOTECA NÃO TEM ATUALIZAÇÃO DESDE 2019. NÃO FUNCIONOU NO MEU PROJETO!
+	// ESSA BIBLIOTECA NÃO TEM ATUALIZAÇÃO DESDE 2019. NÃO FUNCIONOU BEM NO MEU PROJETO...!
 	
 	@Bean
 	public FilterRegistrationBean<SquigglyRequestFilter> squigglyRequestFilter(ObjectMapper objectMapper){
