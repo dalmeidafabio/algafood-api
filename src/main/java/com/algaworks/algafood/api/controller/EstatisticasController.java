@@ -27,7 +27,7 @@ public class EstatisticasController implements EstatisticasControllerOpenApi {
 	@Autowired
 	private VendaReportService vendaReportService;
 	
-	@GetMapping(path = "/vendas-diarias", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path = "/vendas-diarias")
 	public List<VendaDiaria> consultarVendasDiarias(VendaDiariaFilter filtro, 
 			@RequestParam(required = false, defaultValue = "+00:00") String timeOffSet){
 		

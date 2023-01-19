@@ -52,7 +52,7 @@ public class GrupoController implements GrupoControllerOpenApi {
 		return grupoModelAssembler.toModel(cadastroGrupo.buscarOuFalhar(grupoId));
 	}
 	
-	@PostMapping(MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping()
 	@ResponseStatus(HttpStatus.CREATED)
 	public GrupoModel adicionar(@RequestBody @Valid GrupoInput grupoInput) {
 		Grupo grupo = grupoInputDisassembler.toDomainObject(grupoInput);
@@ -62,7 +62,7 @@ public class GrupoController implements GrupoControllerOpenApi {
 		return grupoModelAssembler.toModel(grupo);
 	}
 	
-	@PutMapping(path = "{grupoId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(path = "{grupoId}")
 	public GrupoModel atualizar(@PathVariable Long grupoId, @RequestBody @Valid GrupoInput grupoInput) {
 		Grupo grupoAtual = cadastroGrupo.buscarOuFalhar(grupoId);
 		
