@@ -23,6 +23,7 @@ public class UsuarioModelAssembler extends RepresentationModelAssemblerSupport<U
 		super(UsuarioController.class, UsuarioModel.class);
 	}		
 	
+	@Override
 	public UsuarioModel toModel(Usuario usuario) {
 		
 		UsuarioModel usuarioModel = createModelWithId(usuario.getId(), usuario);

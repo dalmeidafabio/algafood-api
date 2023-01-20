@@ -1,5 +1,8 @@
 package com.algaworks.algafood.api.controller;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
@@ -31,7 +34,11 @@ public class RestauranteUsuarioResponsavelController implements RestauranteUsuar
 	@GetMapping
 	public CollectionModel<UsuarioModel> listar(@PathVariable Long restauranteId){
 		Restaurante restaurante = cadastroRestaurante.buscarOuFalhar(restauranteId);
-		return usuarioModelAssembler.toCollectionModel(restaurante.getResponsaveis());
+		return usuarioModelAssembler.toCollectionModel(restaurante.getResponsaveis())
+				.removeLinks() // para remover o link para collection de usuarios
+				.add(linkTo(methodOn(RestauranteUsuarioResponsavelController.class)
+						.listar(restauranteId))
+						.withSelfRel()); // colocando o link correto
 	}
 	
 	@DeleteMapping("/{usuarioId}")
