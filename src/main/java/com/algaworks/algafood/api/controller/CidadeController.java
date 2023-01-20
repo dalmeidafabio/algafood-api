@@ -30,8 +30,6 @@ import com.algaworks.algafood.domain.model.Cidade;
 import com.algaworks.algafood.domain.repository.CidadeRepository;
 import com.algaworks.algafood.domain.service.CadastroCidadeService;
 
-import io.swagger.annotations.ApiOperation;
-
 @RestController
 @RequestMapping(path = "/cidades", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CidadeController implements CidadeControllerOpenApi {
@@ -48,7 +46,6 @@ public class CidadeController implements CidadeControllerOpenApi {
 	@Autowired
 	private CidadeModelAssembler cidadeModelAssembler;
 
-	@ApiOperation("Lista as cidades.")
 	@GetMapping()
 	public CollectionModel<CidadeModel> listar() {
 		List<Cidade> todasCidades = cidadeRepository.findAll();
