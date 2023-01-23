@@ -35,14 +35,18 @@ public class RestauranteModelAssembler
         restauranteModel.getCozinha().add(
                 algaLinks.linkToCozinha(restaurante.getCozinha().getId()));
         
-        restauranteModel.getEndereco().getCidade().add(
-                algaLinks.linkToCidade(restaurante.getEndereco().getCidade().getId()));
+        if(restauranteModel.getEndereco() != null && restauranteModel.getEndereco().getCidade() != null) {
+            restauranteModel.getEndereco().getCidade().add(
+                    algaLinks.linkToCidade(restaurante.getEndereco().getCidade().getId())); 	
+        }
         
         restauranteModel.add(algaLinks.linkToRestauranteFormasPagamento(restaurante.getId(), 
                 "formas-pagamento"));
         
         restauranteModel.add(algaLinks.linkToRestauranteResponsaveis(restaurante.getId(), 
                 "responsaveis"));
+        
+        restauranteModel.add(algaLinks.linkToProdutos(restaurante.getId(), "produtos"));
         
         if (restaurante.ativacaoPermitida()) {
         	restauranteModel.add(
