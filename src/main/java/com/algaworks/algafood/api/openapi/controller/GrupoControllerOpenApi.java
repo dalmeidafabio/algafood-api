@@ -1,5 +1,7 @@
 package com.algaworks.algafood.api.openapi.controller;
 
+import org.springframework.hateoas.CollectionModel;
+
 import com.algaworks.algafood.api.exceptionhandler.Problem;
 import com.algaworks.algafood.api.model.GrupoModel;
 import com.algaworks.algafood.api.model.input.GrupoInput;
@@ -14,6 +16,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @Api(tags = "Grupos")
 public interface GrupoControllerOpenApi {
+	
+	@ApiOperation("Lista os grupos")
+	CollectionModel<GrupoModel> listar();	
 	
 	@ApiResponses({
 		@ApiResponse(responseCode = "404", 
