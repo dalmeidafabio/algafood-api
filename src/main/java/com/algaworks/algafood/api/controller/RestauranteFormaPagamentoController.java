@@ -45,7 +45,7 @@ public class RestauranteFormaPagamentoController implements RestauranteFormaPaga
 	            .add(algaLinks.linkToRestauranteFormaPagamentoAssociacao(restauranteId, "associar"));
 	    
 	    formasPagamentoModel.getContent().forEach(formaPagamentoModel -> {
-	    	formaPagamentoModel.add(algaLinks.linkToRestauranteFormaPagamentoDeassociacao(
+	    	formaPagamentoModel.add(algaLinks.linkToRestauranteFormaPagamentoDesassociacao(
 	    			restauranteId, formaPagamentoModel.getId(), "desassociar"));
 	    });
 	    
