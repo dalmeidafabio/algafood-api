@@ -15,9 +15,9 @@ public class PermissaoModel extends RepresentationModel<PermissaoModel> {
 	@ApiModelProperty(example = "1")
 	private Long id;
 
-	@ApiModelProperty(example = "CONSULTAR_COZINHAS")
+	@ApiModelProperty(example = "CONSULTAR_PERMISSOES")
 	private String nome;
 
-	@ApiModelProperty(example = "Permite consultar cozinhas")
+	@ApiModelProperty(example = "Permite consultar permissões")
 	private String descricao;
 }
