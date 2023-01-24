@@ -7,14 +7,14 @@ import org.springframework.hateoas.Links;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
-@ApiModel("Estados Model")
+@ApiModel("EstadosModel")
 @Data
 public class EstadosModelOpenApi {
 	
 	private EstadoEmbeddedModelOpenApi _embedded;
 	private Links _links;
 	
-	@ApiModel("Estados Embedded Model")
+	@ApiModel("EstadosEmbeddedModel")
 	@Data
 	public class EstadoEmbeddedModelOpenApi {
 		

@@ -9,14 +9,14 @@ import com.algaworks.algafood.api.model.CidadeModel;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
-@ApiModel("Cidades Model")
+@ApiModel("CidadesModel")
 @Data
 public class CidadesModelOpenApi {
 	
 	private CidadeEmbeddedModelOpenApi _embedded;
 	private Links _links;
 	
-	@ApiModel("Cidades Embedded Model")
+	@ApiModel("CidadesEmbeddedModel")
 	@Data
 	public class CidadeEmbeddedModelOpenApi {
 		
