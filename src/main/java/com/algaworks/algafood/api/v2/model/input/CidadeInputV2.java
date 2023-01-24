@@ -1,6 +1,5 @@
-package com.algaworks.algafood.api.model.input;
+package com.algaworks.algafood.api.v2.model.input;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -10,14 +9,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CidadeInput {
+public class CidadeInputV2 {
 
 	@ApiModelProperty(example = "Salvador", required = true)
 	@NotBlank
-	private String nome;
+	private String nomeCidade;
 	
-	@ApiModelProperty(example = "1")
-	@Valid
+	@ApiModelProperty(example = "1", required = true)
 	@NotNull
-	private EstadoIdInput estado;
+	private Long idEstado;
+	
 }

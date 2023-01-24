@@ -1,4 +1,4 @@
-package com.algaworks.algafood.api.model.input;
+package com.algaworks.algafood.api.v1.model.input;
 
 import javax.validation.constraints.NotNull;
 
@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RestauranteIdInput {
+public class FormaPagamentoIdInput {
 
 	@ApiModelProperty(example = "1", required = true)
 	@NotNull

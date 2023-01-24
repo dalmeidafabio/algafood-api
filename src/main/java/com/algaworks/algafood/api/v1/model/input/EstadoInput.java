@@ -1,4 +1,4 @@
-package com.algaworks.algafood.api.model.input;
+package com.algaworks.algafood.api.v1.model.input;
 
 import javax.validation.constraints.NotBlank;
 
@@ -8,10 +8,10 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class GrupoInput {
+public class EstadoInput {
 
-	@ApiModelProperty(example = "Gerente", required = true)
+	@ApiModelProperty(example = "Minas Gerais", required = true)
 	@NotBlank
-	private String nome;
+	private String nome; 
 	
 }
