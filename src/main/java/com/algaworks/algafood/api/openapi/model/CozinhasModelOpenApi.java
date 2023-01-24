@@ -20,7 +20,7 @@ public class CozinhasModelOpenApi {
 	private Links _links;
 	private PageModelOpenApi page;
 	
-	@ApiModel("Cozinhas Embedded Model")
+	@ApiModel("CozinhasEmbeddedModel")
 	@Data
 	public class CozinhasEmbeddedModelOpenApi {
 		

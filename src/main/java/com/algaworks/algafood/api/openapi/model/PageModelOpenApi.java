@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-@ApiModel("Page Model")
+@ApiModel("PageModel")
 @Getter
 @Setter
 public class PageModelOpenApi {
