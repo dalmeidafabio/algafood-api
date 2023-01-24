@@ -20,6 +20,8 @@ import org.springframework.web.context.request.ServletWebRequest;
 import com.algaworks.algafood.api.exceptionhandler.Problem;
 import com.algaworks.algafood.api.model.CidadeModel;
 import com.algaworks.algafood.api.model.CozinhaModel;
+import com.algaworks.algafood.api.model.EstadoModel;
+import com.algaworks.algafood.api.model.EstadosModelOpenApi;
 import com.algaworks.algafood.api.model.PedidoResumoModel;
 import com.algaworks.algafood.api.openapi.model.CidadesModelOpenApi;
 import com.algaworks.algafood.api.openapi.model.CozinhasModelOpenApi;
@@ -88,7 +90,10 @@ public class SpringFoxConfig {
                     PedidosResumoModelOpenApi.class))
             .alternateTypeRules(AlternateTypeRules.newRule(
                     typeResolver.resolve(CollectionModel.class, CidadeModel.class),
-                    CidadesModelOpenApi.class))            
+                    CidadesModelOpenApi.class))
+            .alternateTypeRules(AlternateTypeRules.newRule(
+                    typeResolver.resolve(CollectionModel.class, EstadoModel.class),
+                    EstadosModelOpenApi.class))            
             
             .apiInfo(apiInfo())
             .tags(new Tag("Cidades", "Gerencia as cidades"),
