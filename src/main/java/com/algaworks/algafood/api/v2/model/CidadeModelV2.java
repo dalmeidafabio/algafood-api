@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Relation(collectionRelation = "cidades")
-@ApiModel(value = "Cidade", description = "Representa uma cidade")
+@ApiModel(value = "CidadeModel", description = "Representa uma cidade")
 @Getter
 @Setter
 public class CidadeModelV2 extends RepresentationModel<CidadeModelV2> {
