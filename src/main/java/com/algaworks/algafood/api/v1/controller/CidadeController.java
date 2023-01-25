@@ -46,13 +46,12 @@ public class CidadeController implements CidadeControllerOpenApi {
 	@Autowired
 	private CidadeModelAssembler cidadeModelAssembler;
 
+	@Deprecated
 	@GetMapping()
 	public CollectionModel<CidadeModel> listar() {
 		List<Cidade> todasCidades = cidadeRepository.findAll();
 		
 		return cidadeModelAssembler.toCollectionModel(todasCidades);
-	    
-	    //cidadesCollectionModel.add(linkTo(CidadeController.class).withSelfRel());
 	}
 	
 	
