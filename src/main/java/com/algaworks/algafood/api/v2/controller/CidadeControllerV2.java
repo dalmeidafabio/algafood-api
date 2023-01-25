@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,6 @@ import com.algaworks.algafood.api.v2.assembler.CidadeInputDisassemblerV2;
 import com.algaworks.algafood.api.v2.assembler.CidadeModelAssemblerV2;
 import com.algaworks.algafood.api.v2.model.CidadeModelV2;
 import com.algaworks.algafood.api.v2.model.input.CidadeInputV2;
-import com.algaworks.algafood.core.web.AlgaMediaTypes;
 import com.algaworks.algafood.domain.exception.EstadoNaoEncontradoException;
 import com.algaworks.algafood.domain.exception.NegocioException;
 import com.algaworks.algafood.domain.model.Cidade;
@@ -27,7 +27,7 @@ import com.algaworks.algafood.domain.repository.CidadeRepository;
 import com.algaworks.algafood.domain.service.CadastroCidadeService;
 
 @RestController
-@RequestMapping(path = "/cidades", produces = AlgaMediaTypes.V2_APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/v2/cidades", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CidadeControllerV2 {
 
 	@Autowired
