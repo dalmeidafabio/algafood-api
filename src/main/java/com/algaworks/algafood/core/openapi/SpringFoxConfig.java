@@ -67,14 +67,16 @@ public class SpringFoxConfig {
 	}	
 	
 	@Bean
-	public Docket apiDocket() {
+	public Docket apiDocketV1() {
 	  
 	  var typeResolver = new TypeResolver();
 	  	
 	  return new Docket(DocumentationType.OAS_30)
+		  .groupName("V1")
 		.select()
 			.apis(RequestHandlerSelectors.basePackage("com.algaworks.algafood.api"))
-			.paths(PathSelectors.any())
+			//.paths(PathSelectors.any())
+			.paths(PathSelectors.ant("/v1/**")) 
 		.build()
 			.useDefaultResponseMessages(false)
 			.globalResponses(HttpMethod.GET, globalGetResponseMessages())
@@ -134,7 +136,7 @@ public class SpringFoxConfig {
                     typeResolver.resolve(CollectionModel.class, UsuarioModel.class),
                     UsuarioModelOpenApi.class))               
             
-            .apiInfo(apiInfo())
+            .apiInfo(apiInfoV1())
             .tags(new Tag("Cidades", "Gerencia as cidades"),
                     new Tag("Grupos", "Gerencia os grupos de usuários"),
                     new Tag("Cozinhas", "Gerencia as cozinhas"),
@@ -147,14 +149,46 @@ public class SpringFoxConfig {
                     new Tag("Estatísticas", "Estatísticas da AlgaFood"),
                     new Tag("Permissões", "Gerencia as permissões"));
 	}
+	
+	@Bean
+	public Docket apiDocketV2() {
+		  
+		  var typeResolver = new TypeResolver();
+		  	
+		  return new Docket(DocumentationType.OAS_30)
+				  .groupName("V2")
+				.select()
+					.apis(RequestHandlerSelectors.basePackage("com.algaworks.algafood.api"))
+				.paths(PathSelectors.ant("/v2/**")) 
+				.build()
+					.useDefaultResponseMessages(false)
+					.globalResponses(HttpMethod.GET, globalGetResponseMessages())
+					.globalResponses(HttpMethod.POST, globalPostPutResponseMessages())
+					.globalResponses(HttpMethod.PUT, globalPostPutResponseMessages())
+					.globalResponses(HttpMethod.DELETE, globalDeleteResponseMessages())
+					.additionalModels(typeResolver.resolve(Problem.class))
+				    .ignoredParameterTypes(ServletWebRequest.class)
+				    .directModelSubstitute(Pageable.class, PageableModelOpenApi.class)
+				    .directModelSubstitute(Links.class, LinksModelOpenApi.class)
+				    .apiInfo(apiInfoV2());	  
+		}		
   
-	public ApiInfo apiInfo() {
+	public ApiInfo apiInfoV1() {
 	  return new ApiInfoBuilder()
 			  .title("AlgaFood API")
 			  .description("API aberta para clientes e restaurantes.")
 			  .version("1")
 			  .contact(new Contact("Algaworkd", "https://www.algaworks.com", "contato@algaworks.com"))
 			  .build();
+	}
+	
+	public ApiInfo apiInfoV2() {
+		  return new ApiInfoBuilder()
+				  .title("AlgaFood API")
+				  .description("API aberta para clientes e restaurantes.")
+				  .version("2")
+				  .contact(new Contact("Algaworkd", "https://www.algaworks.com", "contato@algaworks.com"))
+				  .build();
 	}
   
 	private List<Response> globalGetResponseMessages() {
