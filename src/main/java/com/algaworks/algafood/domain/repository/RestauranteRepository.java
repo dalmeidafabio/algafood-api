@@ -29,4 +29,7 @@ public interface RestauranteRepository
 	List<Restaurante> findTop2ByNomeContaining(String nome);
 	
 	int countByCozinhaId(Long cozinhaId);
+	
+	//Consulta em orm.xml
+	boolean existsResponsavel(Long restauranteId, Long usuarioId);
 }
