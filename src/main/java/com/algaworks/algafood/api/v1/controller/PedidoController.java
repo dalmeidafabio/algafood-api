@@ -134,6 +134,7 @@ public class PedidoController implements PedidoControllerOpenApi {
 		return PageableTranslator.translate(apiPageable, mapeamento);
 	}
 	
+	@CheckSecurity.Pedidos.PodeCriar
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public PedidoModel adicionar(@Valid @RequestBody PedidoInput pedidoInput) {
