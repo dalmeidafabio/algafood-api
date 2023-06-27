@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.web.filter.ShallowEtagHeaderFilter;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -18,17 +17,6 @@ public class WebConfig implements WebMvcConfigurer {
 	@Autowired
 	private ApiRetirementHandler apiRetirementHandler;
 
-	@Override
-	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/**") //Já habilita 100%
-		.allowedMethods("*"); //Todos os métodos
-		
-//		registry.addMapping("/**")
-//			.allowedOrigins("http://...") //Para espeficar o endereço
-//			.allowedMethods("*") //Para especificar os métodos
-//			.maxAge(30); // Para definir o tempo do cache
-	}
-	
 	@Bean
 	public Filter shallowEtagHeaderFilter() {
 		return new ShallowEtagHeaderFilter();
