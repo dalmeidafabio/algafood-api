@@ -17,8 +17,6 @@ public class ApiRetirementHandler implements HandlerInterceptor {
 		//Adicionando Status de "desligada"
 		if (request.getRequestURI().startsWith("/v1/")) {
 			response.setStatus(HttpStatus.GONE.value());
-		} else {
-			return false;
 		}
 		
 		/* Adicionando HEADER para informar sobre a depreciação
