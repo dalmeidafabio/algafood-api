@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -66,6 +67,7 @@ public class CidadeController implements CidadeControllerOpenApi {
 	
 	@CheckSecurity.Cidades.PodeEditar
 	@PostMapping()
+	@ResponseStatus(HttpStatus.CREATED)
 	public CidadeModel adicionar(@RequestBody @Valid CidadeInput cidadeInput) {
 		try {
 			Cidade cidade = cidadeInputDisassembler.toDomainObject(cidadeInput);
@@ -103,7 +105,8 @@ public class CidadeController implements CidadeControllerOpenApi {
 	@CheckSecurity.Cidades.PodeEditar
 	@DeleteMapping("{cidadeId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void remover(@PathVariable Long cidadeId) {
+	public ResponseEntity<Void> remover(@PathVariable Long cidadeId) {
 		cadastroCidade.excluir(cidadeId);
+		return ResponseEntity.noContent().build();
 	}
 }
