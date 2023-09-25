@@ -14,7 +14,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.http.ResponseEntity;
 
 @SecurityRequirement(name = "security_auth")
-@Tag(name = "Cidades")
+@Tag(name = "Cidades", description = "Gerencia Cidades")
 public interface CidadeControllerOpenApi {
 
 	@Operation(summary = "Lista as cidades")
