@@ -26,6 +26,13 @@ public interface RestauranteProdutoFotoControllerOpenApi {
 								   @Parameter(description = "Id do produto", example = "2", required = true) Long produtoId,
 								   @RequestBody(required = true) FotoProdutoInput fotoProdutoInput) throws IOException;
 
+	@Operation(summary = "Exclui a foto do produto de um restaurante", responses = {
+			@ApiResponse(responseCode = "204", description = "Foto do produto excluída"),
+			@ApiResponse(responseCode = "400", description = "ID do restaurante ou produto inválido", content = {
+					@Content(schema = @Schema(ref = "Problema")) }),
+			@ApiResponse(responseCode = "404", description = "Foto de produto não encontrada", content = {
+					@Content(schema = @Schema(ref = "Problema")) }),
+	})
 	ResponseEntity<Void> excluir(Long restauranteId,Long produtoId);
 
 	@Operation(summary = "Busca a foto do produto de um restaurante", responses = {
@@ -33,9 +40,16 @@ public interface RestauranteProdutoFotoControllerOpenApi {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = FotoProdutoModel.class)),
 					@Content(mediaType = "image/jpeg", schema = @Schema(type = "string", format = "binary")),
 					@Content(mediaType = "image/png", schema = @Schema(type = "string", format = "binary"))
-			})
+			}),
+			@ApiResponse(responseCode = "400", description = "ID do restaurante ou produto inválido", content = {
+					@Content(schema = @Schema(ref = "Problema")) }),
+			@ApiResponse(responseCode = "404", description = "Foto de produto não encontrada", content = {
+					@Content(schema = @Schema(ref = "Problema")) }),
+
 	})
-	FotoProdutoModel buscar(Long restauranteId,Long produtoId);
+	FotoProdutoModel buscar(
+			@Parameter(description = "ID do restaurante", example = "1", required = true) Long restauranteId,
+			@Parameter(description = "ID do produto", example = "1", required = true) Long produtoId);
 
 	@Operation(hidden = true)
 	ResponseEntity<?> servir(Long restauranteId, Long produtoId, String acceptHeader)

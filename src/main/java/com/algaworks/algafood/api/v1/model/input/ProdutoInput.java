@@ -1,28 +1,33 @@
 package com.algaworks.algafood.api.v1.model.input;
 
-import java.math.BigDecimal;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
-
-import lombok.Getter;
-import lombok.Setter;
+import java.math.BigDecimal;
 
 @Setter
 @Getter
 public class ProdutoInput {
 
-	@NotBlank
-	private String nome;
+    @Schema(example = "Espetinho de Cupim")
+    @NotBlank
+    private String nome;
 
-	@NotBlank
-	private String descricao;
+    @Schema(example = "Acompanha farinha, mandioca e vinagrete")
+    @NotBlank
+    private String descricao;
 
-	@NotNull
-	@PositiveOrZero
-	private BigDecimal preco;
+    @Schema(example = "12.50")
+    @PositiveOrZero
+    @NotNull
+    private BigDecimal preco;
 
-	@NotNull
-	private Boolean ativo;
+    @Schema(example = "true")
+    @NotNull
+    private Boolean ativo;
+
 }

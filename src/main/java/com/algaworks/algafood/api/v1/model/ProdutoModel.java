@@ -1,26 +1,30 @@
 package com.algaworks.algafood.api.v1.model;
 
-import java.math.BigDecimal;
-
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.math.BigDecimal;
 
 @Relation(collectionRelation = "produtos")
 @Setter
 @Getter
 public class ProdutoModel extends RepresentationModel<ProdutoModel> {
 
-	private Long id;
+    @Schema(example = "1")
+    private Long id;
 
-	private String nome;
+    @Schema(example = "Espetinho de Cupim")
+    private String nome;
 
-	private String descricao;
+    @Schema(example = "Acompanha farinha, mandioca e vinagrete")
+    private String descricao;
 
-	private BigDecimal preco;
+    @Schema(example = "12.50")
+    private BigDecimal preco;
 
-	private Boolean ativo;
-	
+    @Schema(example = "true")
+    private Boolean ativo;
+
 }
