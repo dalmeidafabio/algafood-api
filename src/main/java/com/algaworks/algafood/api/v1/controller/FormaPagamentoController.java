@@ -134,9 +134,11 @@ public class FormaPagamentoController implements FormaPagamentoControllerOpenApi
 	}
 	
 	@CheckSecurity.FormasPagamento.PodeEditar
-	@DeleteMapping("{formaPagamentoId}")
+	@Override
+	@DeleteMapping("/{formaPagamentoId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void excluir(@PathVariable Long formaPagamentoId) {
+	public ResponseEntity<Void> remover(@PathVariable Long formaPagamentoId) {
 		formaPagamentoService.excluir(formaPagamentoId);
+		return ResponseEntity.noContent().build();
 	}
 }
