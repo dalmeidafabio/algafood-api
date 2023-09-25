@@ -9,6 +9,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.algaworks.algafood.api.v1.model.FotoProdutoModel;
 import com.algaworks.algafood.api.v1.model.input.FotoProdutoInput;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@SecurityRequirement(name = "security_auth")
+@Tag(name = "Restaurantes - Produtos - Fotos dos Produtos", description = "Gerencia as Fotos dos Produtos")
 public interface RestauranteProdutoFotoControllerOpenApi {
 
     FotoProdutoModel atualizarFoto(

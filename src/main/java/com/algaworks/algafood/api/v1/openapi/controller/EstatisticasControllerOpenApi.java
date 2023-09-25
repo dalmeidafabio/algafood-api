@@ -8,6 +8,11 @@ import com.algaworks.algafood.api.v1.controller.EstatisticasController.Estatisti
 import com.algaworks.algafood.domain.filter.VendaDiariaFilter;
 import com.algaworks.algafood.domain.model.dto.VendaDiaria;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@SecurityRequirement(name = "security_auth")
+@Tag(name = "Estatísticas", description = "Gera Estatísticas")
 public interface EstatisticasControllerOpenApi {
 
     List<VendaDiaria> consultarVendasDiarias(

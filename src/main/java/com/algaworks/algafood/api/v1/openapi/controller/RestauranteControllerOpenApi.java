@@ -12,7 +12,11 @@ import com.algaworks.algafood.api.v1.model.input.RestauranteInput;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@SecurityRequirement(name = "security_auth")
+@Tag(name = "Restaurantes", description = "Gerencia os Restaurantes")
 public interface RestauranteControllerOpenApi {
 
 //		@JsonView(RestauranteView.Resumo.class)

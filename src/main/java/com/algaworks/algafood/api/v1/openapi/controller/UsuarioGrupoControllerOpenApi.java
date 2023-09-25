@@ -5,6 +5,11 @@ import org.springframework.http.ResponseEntity;
 
 import com.algaworks.algafood.api.v1.model.GrupoModel;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@SecurityRequirement(name = "security_auth")
+@Tag(name = "Usuários - Grupos de Usuários", description = "Gerencia Grupos de Usuários")
 public interface UsuarioGrupoControllerOpenApi {
 
     CollectionModel<GrupoModel> listar(
