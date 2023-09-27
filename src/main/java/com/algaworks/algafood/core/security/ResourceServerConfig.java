@@ -21,7 +21,8 @@ public class ResourceServerConfig {
 				.and()
 				.csrf().disable()
 				.cors().disable()
-				.oauth2ResourceServer().opaqueToken();
+				//.oauth2ResourceServer().opaqueToken();
+				.oauth2ResourceServer().jwt();
 		
 		return http.build();
 	}
