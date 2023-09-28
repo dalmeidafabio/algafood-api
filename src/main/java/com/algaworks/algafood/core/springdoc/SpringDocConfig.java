@@ -5,7 +5,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springdoc.core.customizers.OpenApiCustomiser;
+import org.springdoc.core.customizers.OpenApiCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -68,7 +68,7 @@ public class SpringDocConfig {
     }
 
     @Bean
-    public OpenApiCustomiser openApiCustomiser() {
+    public OpenApiCustomizer openApiCustomizer() {
         return openApi -> {
             openApi.getPaths()
                     .values()
