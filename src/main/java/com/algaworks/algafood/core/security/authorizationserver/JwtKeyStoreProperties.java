@@ -11,13 +11,13 @@ import org.springframework.validation.annotation.Validated;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @Validated
 @Component
 @ConfigurationProperties("algafood.jwt.keystore")
 public class JwtKeyStoreProperties {
-	
+
 	@NotNull
 	private Resource jksLocation;
 	
@@ -26,5 +26,5 @@ public class JwtKeyStoreProperties {
 	
 	@NotBlank
 	private String keypairAlias;
-	
+
 }

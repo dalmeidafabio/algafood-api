@@ -1,5 +1,7 @@
 package com.algaworks.algafood.core.springdoc;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,8 +27,6 @@ import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
-
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 
 @Configuration

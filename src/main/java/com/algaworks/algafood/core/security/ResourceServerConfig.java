@@ -21,21 +21,18 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class ResourceServerConfig {
 
-	@Bean
-	public SecurityFilterChain resourceServerFilterChain(HttpSecurity http) throws Exception {
-		http
-				.authorizeRequests()
-				.antMatchers("/oauth2/**")
-				.authenticated()
-				.and()
-				.csrf().disable()
-				.cors().disable()
-				//.oauth2ResourceServer().opaqueToken();
-	            .oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter());
-		
-		return http.formLogin(customizer -> customizer.loginPage("/login")).build();
-	}
-	
+    @Bean
+    public SecurityFilterChain resourceServerFilterChain(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+            .antMatchers("/oauth2/**").authenticated()
+            .and()
+            .csrf().disable()
+            .cors().and()
+            .oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter());
+
+        return http.formLogin(customizer -> customizer.loginPage("/login")).build();
+    }
+
     private JwtAuthenticationConverter jwtAuthenticationConverter() {
         JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
 
@@ -58,6 +55,6 @@ public class ResourceServerConfig {
         });
 
         return converter;
-    }	
-	
+    }
+
 }

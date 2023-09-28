@@ -17,7 +17,7 @@ import com.algaworks.algafood.domain.model.Usuario;
 import com.algaworks.algafood.domain.repository.UsuarioRepository;
 
 @Service
-public class JpaUserDetailService implements UserDetailsService {
+public class JpaUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
@@ -26,7 +26,7 @@ public class JpaUserDetailService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Usuario usuario = usuarioRepository.findByEmail(username)
-				.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado com o e-mail informado."));
+				.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado com e-mail informado"));
 		
 		return new User(usuario.getEmail(), usuario.getSenha(), getAuthorities(usuario));
 	}
@@ -36,7 +36,6 @@ public class JpaUserDetailService implements UserDetailsService {
 				.flatMap(grupo -> grupo.getPermissoes().stream())
 				.map(permissao -> new SimpleGrantedAuthority(permissao.getNome().toUpperCase()))
 				.collect(Collectors.toSet());
-		
 	}
 
 }
