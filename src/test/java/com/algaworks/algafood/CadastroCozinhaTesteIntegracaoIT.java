@@ -2,8 +2,6 @@ package com.algaworks.algafood;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import javax.validation.ConstraintViolationException;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,6 +13,8 @@ import com.algaworks.algafood.domain.exception.CozinhaNaoEncontradaException;
 import com.algaworks.algafood.domain.exception.EntidadeEmUsoException;
 import com.algaworks.algafood.domain.model.Cozinha;
 import com.algaworks.algafood.domain.service.CadastroCozinhaService;
+
+import jakarta.validation.ConstraintViolationException;
 
 ///ESSA CLASSE FOI REMOVIDA DO PROJETO DO CURSO - DEIXEI APENAS PARA CONSULTA
 @ExtendWith(SpringExtension.class)
